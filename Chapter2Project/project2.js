@@ -26,7 +26,3 @@ document.getElementById("p5").textContent = myNameMultNum;
 let age = 25;  // Replace with your age
 let ageCompare = age > numberMult;  // True or false comparison
 document.getElementById("p6").textContent = ageCompare;
-
-document.getElementById("p2").textContent = numberSum;
-document.getElementById("p3").textContent = numberMult;
-document.getElementById("p6").textContent = ageCompare;

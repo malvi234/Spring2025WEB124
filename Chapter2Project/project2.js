@@ -5,9 +5,8 @@ let myName = "Madina Alvi";
 let para1 = document.getElementById("p1");
 para1.textContent = myName;
 
-// Step 2: Add two numbers and display the sum
-let n1 = 10;  // Example number
-let n2 = 5;   // Example number
+let n1 = 10; 
+let n2 = 5;  
 let numberSum = n1 + n2;
 document.getElementById("p2").textContent = numberSum;
 
@@ -27,15 +26,6 @@ document.getElementById("p5").textContent = myNameMultNum;
 let age = 25;  // Replace with your age
 let ageCompare = age > numberMult;  // True or false comparison
 document.getElementById("p6").textContent = ageCompare;
-
-// Step 7: Change the values of n1 and n2 and refresh
-n1 = 20;  // New value for n1
-n2 = 10;  // New value for n2
-
-// Recalculate and display the updated values
-numberSum = n1 + n2;
-numberMult = n1 * n2;
-ageCompare = age > numberMult;
 
 document.getElementById("p2").textContent = numberSum;
 document.getElementById("p3").textContent = numberMult;

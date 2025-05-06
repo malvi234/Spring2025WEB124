@@ -1,0 +1,130 @@
+<!-- 
+ Name: Madina Alvi
+ Date: 05/05/2025
+
+ I changed image on the site as well as displaying value indicators that change when
+ you adjust the changes on the image. That was very challenging to code and took a lot 
+ of trial and error. 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <link rel="icon" href="https://fav.farm/✅" />
+</head>
+<body>
+  <h2>Cats are <span class='hl'>Cute</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <span class="value"></span>
+  
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <span class="value"></span>
+  
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+    <span class="value"></span>
+  </div>
+  
+
+  <img src="cat.jpg">
+
+  <style>
+    :root {
+  --base: #e25d5d;
+  --spacing: 10px;
+  --blur: 10px;
+}
+
+body {
+  text-align: center;
+  background: #3fa093;
+  color: rgb(9, 40, 70);
+  font-family: 'helvetica neue', sans-serif;
+  font-weight: 100;
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-top: 40px;
+}
+
+.hl {
+  color: var(--base);
+}
+
+.controls {
+  margin-bottom: 50px;
+}
+
+.control-group {
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+
+input[type="range"] {
+  width: 200px;
+}
+
+.value {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #ccc;
+}
+
+img {
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+  </style>
+
+  <script>
+  const inputs = document.querySelectorAll('.controls input');
+const valueDisplays = document.querySelectorAll('.value');
+
+function handleUpdate() {
+  const suffix = this.dataset.sizing || '';
+  const cssVar = `--${this.name}`;
+  const value = this.value + suffix;
+
+  // Update the CSS variable
+  document.documentElement.style.setProperty(cssVar, value);
+
+  // Update the display span next to the input
+  const valueDisplay = this.nextElementSibling;
+  if (valueDisplay && valueDisplay.classList.contains('value')) {
+    valueDisplay.textContent = this.value + (suffix || '');
+  }
+}
+
+// Add event listeners to each input
+inputs.forEach(input => {
+  input.addEventListener('change', handleUpdate);
+  input.addEventListener('mousemove', handleUpdate);
+
+  // Set the initial display values
+  const suffix = input.dataset.sizing || '';
+  const valueDisplay = input.nextElementSibling;
+  if (valueDisplay && valueDisplay.classList.contains('value')) {
+    valueDisplay.textContent = input.value + suffix;
+  }
+});
+
+  </script>
+
+
+</body>
+</html>
